@@ -15,6 +15,11 @@ public class CityBean implements Serializable {
 	public CityBean() {
 	}
 
+	public CityBean(long cityId, String city) {
+		this.cityId = cityId;
+		this.city = city;
+	}
+
 	public long getCityId() {
 		return cityId;
 	}
