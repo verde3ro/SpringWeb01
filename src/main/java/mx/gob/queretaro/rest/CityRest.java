@@ -6,7 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import mx.gob.queretaro.exception.InternalException;
@@ -40,6 +42,41 @@ public class CityRest {
 		try {
 			resultado.put("estado", "exito");
 			resultado.put("datos", cityService.obtenerTodos());
+		} catch (InternalException ex) {
+			resultado.put("estado", "error");
+			resultado.put("datos", ex.getMessage());
+		}
+
+		return resultado;
+	}
+
+	@GetMapping(path="obtenerPorId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> obtenerPorId(
+			@PathVariable("id") long id
+			) {
+		Map<String, Object> resultado = new HashMap<>();
+
+		try {
+			resultado.put("estado", "exito");
+			resultado.put("datos", cityService.obtenerPorId(id));
+		} catch (InternalException ex) {
+			resultado.put("estado", "error");
+			resultado.put("datos", ex.getMessage());
+		}
+
+		return resultado;
+	}
+
+	@GetMapping(path="obtenerPorId", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> obtenerPorIdRequestParm(
+			@RequestParam("id") long id,
+			@RequestParam("ejemplo") String ejemplo
+			) {
+		Map<String, Object> resultado = new HashMap<>();
+
+		try {
+			resultado.put("estado", "exito");
+			resultado.put("datos", cityService.obtenerPorId(id));
 		} catch (InternalException ex) {
 			resultado.put("estado", "error");
 			resultado.put("datos", ex.getMessage());

@@ -34,4 +34,20 @@ public class CityServiceImpl implements ICityService {
 		}
 	}
 
+	@Override
+	public CityBean obtenerPorId(long id) throws InternalException {
+		if (id > 0L) {
+			try {
+				return cityRepository.obtenerPorId(id);
+			} catch (InternalException ex) {
+				throw ex;
+			} catch (Exception ex) {
+				log.error(String.format("Ocurrio un eror al obtener la ciudad con el id: %d", id), ex);
+				throw new InternalException(String.format("Ocurrio un eror al obtener la ciudad con el id: %d", id));
+			}
+		} else {
+			throw new InternalException("El id de la ciudad debe ser mayor a 0");
+		}
+	}
+
 }

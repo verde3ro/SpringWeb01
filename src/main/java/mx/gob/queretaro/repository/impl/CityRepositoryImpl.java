@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import mx.gob.queretaro.bean.CityBean;
 import mx.gob.queretaro.exception.InternalException;
+import mx.gob.queretaro.mapper.CityRowMapper;
 import mx.gob.queretaro.repository.ICityRepository;
 
 @Repository
@@ -33,4 +34,14 @@ public class CityRepositoryImpl implements ICityRepository {
 		}
 	}
 
+	@Override
+	public CityBean obtenerPorId(long id) throws InternalException {
+		try {
+			return jdbc.queryForObject("select * from city where city_id = ?", new CityRowMapper(), id);
+		} catch (Exception ex) {
+			log.error(String.format("Ocurrio un eror al obtener la ciudad con el %d", id), ex);
+			throw new InternalException(String.format("Ocurrio un eror al obtener la ciudad con el %d", id));
+		}
+	}
 }
+

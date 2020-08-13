@@ -9,4 +9,6 @@ public interface ICityService {
 
 	List<CityBean> obtenerTodos() throws InternalException;
 
+	CityBean obtenerPorId(long id) throws InternalException;
+
 }
