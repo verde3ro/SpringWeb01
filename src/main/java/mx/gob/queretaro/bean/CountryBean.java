@@ -22,6 +22,13 @@ public class CountryBean implements Serializable {
 		this.country = country;
 	}
 
+
+	public CountryBean(long countryId, String country, Date lastUpdate) {
+		this.countryId = countryId;
+		this.country = country;
+		this.lastUpdate = lastUpdate;
+	}
+
 	public long getCountryId() {
 		return countryId;
 	}
