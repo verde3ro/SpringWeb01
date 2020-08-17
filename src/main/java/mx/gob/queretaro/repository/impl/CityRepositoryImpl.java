@@ -43,5 +43,20 @@ public class CityRepositoryImpl implements ICityRepository {
 			throw new InternalException(String.format("Ocurrio un eror al obtener la ciudad con el %d", id));
 		}
 	}
+
+	@Override
+	public void guardar(CityBean city) throws InternalException {
+		try {
+			String sql = "insert into city (city, country_id, last_update, status) VALUES (?, ?, ?, ?)";
+
+			jdbc.update(sql, city.getCity(), city.getCountry().getCountryId(), city.getLastUpdate(),
+					city.getStatus());
+		} catch (Exception ex) {
+			log.error("Ocurrio un eror al guardar la ciudad", ex);
+			throw new InternalException("Ocurrio un eror al guardar la ciudad");
+		}
+
+	}
+
 }
 

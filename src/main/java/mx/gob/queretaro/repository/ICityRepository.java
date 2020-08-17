@@ -11,4 +11,6 @@ public interface ICityRepository {
 
 	CityBean obtenerPorId(long id) throws InternalException;
 
+	void guardar(CityBean city) throws InternalException;
+
 }
