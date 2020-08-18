@@ -1,6 +1,5 @@
 package mx.gob.queretaro.service.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.jboss.logging.Logger;
@@ -64,7 +63,7 @@ public class CityServiceImpl implements ICityService {
 
 			city.setCity(cityRequest.getCity().trim());
 			city.setCountry(new CountryBean(cityRequest.getCountryId()));
-			city.setLastUpdate(new Date());
+			city.setLastUpdate(cityRequest.getLastUpdate());
 			city.setStatus("AC");
 
 			cityRepository.guardar(city);

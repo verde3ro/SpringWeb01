@@ -72,6 +72,10 @@
 								</c:forEach>
 							</select>
 						</div>
+						<div class="form-group">
+							<label for="lastUpdate">* Fecha creación:</label>
+							<input type="date" class="form-control" id="lastUpdate" name="lastUpdate" placeholder="Fecha creaci&#243;n" />
+						</div>
 						<button type="submit" class="btn btn-primary">Crear</button>
 						<c:if test="${not empty error}">
 						<p>&nbsp;</p>
